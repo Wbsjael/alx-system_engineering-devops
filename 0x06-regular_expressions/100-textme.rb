@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
-puts ARGV[0]
-    .scan(/(?<=from:|to:|flags:).+?(?=\])/)
-    .join(',')
+#the textme exercise
+#the script should output SENDER,RECEIVER,FLAGS
+myPattern = /\[from:([^\]]*)\]\s*\[to:\s*([^\]]+)\]\s*\[flags:\s*([^\]]+)/
+if ARGV.any?
+  ARGV.first.scan(myPattern) { |r| print "#{r.join(',')}" }
+  puts
+end
+~                                                                                                                                                    
