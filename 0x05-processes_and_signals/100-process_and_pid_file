@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# process and PID file script
+
+pidfile="/var/run/myscript.pid"
+echo "$$" > "$pidfile"
+
+terminate() {
+	rm "$pidfile"
+	exit
+}
+
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+	trap 'echo "Y U no love me?!"' SIGINT
+	trap 'echo "I hate the kill command" && terminate' SIGTERM
+	trap 'terminate' SIGQUIT
+done
