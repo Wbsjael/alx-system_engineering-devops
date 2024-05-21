@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# bash script that tells the story of the file /etc/passwd
+FILE="/etc/passwd"
+IFS=:
+while IFS=: read -r -a array; do
+    username="${array[0]}"
+    groupid="${array[3]}"
+    homedir="${array[5]}"
+    cmdshell="${array[6]}"
+    password="${array[1]}"
+    comment="${array[4]}"
+    echo "The user $username is part of the $groupid gang, lives in $homedir, and rides $cmdshell. User ID's place is protected by the passcode $password, more info about the user here: $comment"
+done < "$FILE"
