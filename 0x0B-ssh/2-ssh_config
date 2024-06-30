@@ -1,0 +1,5 @@
+Host wbsjael
+	passwordAuthentication no
+	IdentityFile ~/.ssh/school
+	HostName 54.175.76.148
+	User ubuntu
