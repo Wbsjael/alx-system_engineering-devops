@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# script that configures a new HAproxy as a load balancer
+
+sudo apt-get -y update
+sudo apt-get -y install haproxy
+
+echo '
+frontend front_http
+    bind *:80
+    default_backend server_backend_http
+
+backend server_backend_http
+    server server1 54.236.12.49 check
+
+frontend front_https
+    bind *:443
+    default_backend server_backend_https
+
+backend server_backend_https
+    server server2 54.237.52.113 check    
+ 
+' >> /etc/haproxy/haproxy.cfg
+
+sudo service haproxy restart
